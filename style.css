@@ -26,7 +26,16 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 10vh;
     background-color: rgb(23, 23, 165);
     color: #fff;
+}
+
+.projects-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+figure {
+    margin: 1rem;
 }
