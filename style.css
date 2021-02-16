@@ -5,6 +5,7 @@
 
 html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -14,6 +15,9 @@ body {
 #navbar {
     display: flex;
     justify-content: flex-end;
+    position: fixed;
+    width: 100%;
+    background-color: aquamarine;
 }
 
 .navlist {
@@ -21,12 +25,21 @@ body {
     list-style-type: none;
 }
 
+.navlist a {
+    font-size: 1.5em;
+    padding: .5em;
+}
+
+.navlist a:hover {
+    background-color: aqua;
+}
+
 #welcome-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    height: 100vh;
     background-color: rgb(23, 23, 165);
     color: #fff;
 }
@@ -36,6 +49,47 @@ body {
     flex-wrap: wrap;
 }
 
+.project-tile {
+    
+}
+
 figure {
     margin: 1rem;
+}
+
+figcaption {
+    text-align: center;
+}
+
+#contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media (max-width: 1200px) {
+    html {
+        font-size: 100%
+    }
+}
+
+@media (max-width: 980px) {
+    img {
+        width: 75%;
+    }
+}
+
+@media (max-width: 460px) {
+    html {
+        font-size: 50%;
+        background-color: lawngreen;
+    }
+
+    img {
+        width: 25%;
+    }
 }
