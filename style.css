@@ -53,6 +53,9 @@ body {
     height: 100vh;
     background-color: var(--dark-green);
     color: #fff;
+/*     background-image: url("images/720S_Home.jpg");
+    background-repeat: no-repeat;
+    background-position: center; */
 }
 
 .projects-grid {
