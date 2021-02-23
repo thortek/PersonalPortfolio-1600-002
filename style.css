@@ -96,7 +96,7 @@ figcaption span {
     align-items: center;
     background-color: var(--redbrown);
     color: #fff;
-    height: 300px;
+    height: 60vh;
 }
 
 .contact-details a {
@@ -112,6 +112,7 @@ figcaption span {
 footer {
     background-color: var(--gray);
     color: #fff;
+    height: 5vh;
 }
 
 a {
