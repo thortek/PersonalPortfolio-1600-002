@@ -4,6 +4,19 @@ import { removeChildren, getLastNumber } from '../utils/index.js'
 const main = document.querySelector('main')
 const navList = document.querySelector('.navList')
 const shipView = document.querySelector('.shipView')
+const dialog = document.querySelector('.modal')
+
+const closeButton = document.querySelector('.modal-close')
+
+closeButton.addEventListener('click', () => {
+    dialog.classList.toggle("is-active")
+})
+
+const modalBackground = document.querySelector('.modal-background')
+
+modalBackground.addEventListener('click', () => {
+    dialog.classList.toggle("is-active")
+})
 
 function populateNav() {
     starships.forEach((starship) => {
@@ -26,6 +39,7 @@ function populateShipView(shipData) {
     shipImage.addEventListener('error', () => {
         console.log(`Oops! missing image`)
         shipImage.hidden = true
+        dialog.classList.toggle("is-active") // genius level!
     })
     shipView.appendChild(shipImage)
 }
@@ -55,4 +69,4 @@ function getRandomPosition() {
     return [randomX, randomY]
 }
 
-addStarField(document.querySelector('body'), 400)
+addStarField(document.querySelector('body'), 500)
