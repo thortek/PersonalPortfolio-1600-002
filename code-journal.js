@@ -12,11 +12,11 @@ const ANSWER = 42
 
 // Strings
 
-let string1 = "Hello World!"
+let string1 = 'Hello World!'
 
 let string2 = 'Hello Utah!'
 
-let string3 = new String("Hello New World!")
+let string3 = new String('Hello New World!')
 
 // Numbers
 
@@ -24,8 +24,8 @@ let myNum = 239874928734
 
 let myNum2 = 75.43
 
-"1" == 1 // true, because of type coercion and loose equality checking
-"1" === 1 // false because this is strict equality checking
+'1' == 1 // true, because of type coercion and loose equality checking
+'1' === 1 // false because this is strict equality checking
 
 // Boolean
 
@@ -36,51 +36,51 @@ let myBool = false
 let myArray = [] // this is an empty array
 
 //              0     1      2        3     4
-let myArray2 = [42, "Bob", myBool, ANSWER, true]
+let myArray2 = [42, 'Bob', myBool, ANSWER, true]
 
-let secondElement = myArray2[1];
+let secondElement = myArray2[1]
 
-let lastItem = myArray2[myArray2.length - 1];
+let lastItem = myArray2[myArray2.length - 1]
 
-myArray2.push("Thor"); // added an element to the end of myArray2
+myArray2.push('Thor') // added an element to the end of myArray2
 
-myArray2.unshift("Hello World!");
+myArray2.unshift('Hello World!')
 
 let myLongString =
-  "woiru4875875nswiufiuro248u5kdsjfowieurewlkjfoweurlehroihsfdadfasdf";
+  'woiru4875875nswiufiuro248u5kdsjfowieurewlkjfoweurlehroihsfdadfasdf'
 
-myLongString.length;
+myLongString.length
 
 // Object
 
-let minObject = {};
+let minObject = {}
 
 const myCar = {
-  make: "Chevrolet",
-  color: "Red",
-  year: "1965",
-  vin: "204385u4oirskjwoiru94839492owi9u390"
-};
+  make: 'Chevrolet',
+  color: 'Red',
+  year: '1965',
+  vin: '204385u4oirskjwoiru94839492owi9u390',
+}
 
-myCar.numDoors = 2;
+myCar.numDoors = 2
 
 const anotherObject = {
-  wordz: ["foo", "bar", "baz"],
+  wordz: ['foo', 'bar', 'baz'],
   car: {
-    make: "McLaren",
-    model: "675LT"
+    make: 'McLaren',
+    model: '675LT',
   },
-  awesome: true
-};
+  awesome: true,
+}
 
 // Functions
 
 function myFunction() {
-  return "My greeting to you...";
+  return 'My greeting to you...'
 }
 
 function sumTwoThings(one, two) {
-  return one + two;
+  return one + two
 }
 
 // Arrow Functions
@@ -95,54 +95,148 @@ const theFunction = () => 'I am awesome'
 const pilots = [
   {
     id: 2,
-    name: "Wedge Antilles",
-    faction: "Rebels"
+    name: 'Wedge Antilles',
+    faction: 'Rebels',
   },
   {
     id: 8,
-    name: "Ciena Ree",
-    faction: "Empire"
+    name: 'Ciena Ree',
+    faction: 'Empire',
   },
   {
     id: 40,
-    name: "Iden Versio",
-    faction: "Empire"
+    name: 'Iden Versio',
+    faction: 'Empire',
   },
   {
     id: 66,
-    name: "Thane Kyrell",
-    faction: "Rebels"
-  }
-];
+    name: 'Thane Kyrell',
+    faction: 'Rebels',
+  },
+]
 
-const rebels = pilots.filter((pilot) => pilot.faction === "Rebels");
+const rebels = pilots.filter((pilot) => pilot.faction === 'Rebels')
 const empire = pilots.filter((pilot) => {
-  return pilot.faction === "Empire";
-});
+  return pilot.faction === 'Empire'
+})
 
 // Array helper method 'map'
 
 const pilotsWithDate = pilots.map((pilot) => {
-  let date = new Date();
-  pilot.date = date.toLocaleDateString("en-US");
-  return pilot;
-});
+  let date = new Date()
+  pilot.date = date.toLocaleDateString('en-US')
+  return pilot
+})
 
 let filmURLs = [
-  "https://swapi.co/api/films/",
-  "https://swapi.co/api/films/5/",
-  "https://swapi.co/api/films/4/this one is longer... even longer",
-  "https://swapi.co/api/films/6/",
-  "https: ",
-  "https://swapi.co/api/films/1/"
-];
+  'https://swapi.co/api/films/',
+  'https://swapi.co/api/films/5/',
+  'https://swapi.co/api/films/4/this one is longer... even longer',
+  'https://swapi.co/api/films/6/',
+  'https: ',
+  'https://swapi.co/api/films/1/',
+]
 
-const filmLengths = filmURLs.map((filmURL) => filmURL.length);
+const filmLengths = filmURLs.map((filmURL) => filmURL.length)
 
 const filmPlusMore = filmURLs.map((filmURL) => {
   let filmObj = {
     index: filmURL,
-    foo: "Bar"
-  };
-  return filmObj;
-});
+    foo: 'Bar',
+  }
+  return filmObj
+})
+
+// Reduce example
+
+const swpilots = [
+  {
+    id: 10,
+    name: 'Poe Dameron',
+    years: 14,
+  },
+  {
+    id: 2,
+    name: "Temmin 'Snap' Wexley",
+    years: 30,
+  },
+  {
+    id: 41,
+    name: 'Tallissan Lintra',
+    years: 16,
+  },
+  {
+    id: 99,
+    name: 'Ello Asty',
+    years: 22,
+  },
+]
+
+const totalYears = swpilots.reduce((acc, pilot) => acc + pilot.years, 0) // add all pilot years to acc
+
+const mostExpPilot = swpilots.reduce((oldest, pilot) => {
+  return (oldest.years || 0) > pilot.years ? oldest : pilot
+}, {})
+
+// Ternary operator syntax: condition ? exprIfTrue : exprIfFalse
+
+// Now we combine map, reduce, and filter
+
+var personnel = [
+  {
+    id: 5,
+    name: 'Luke Skywalker',
+    pilotingScore: 98,
+    shootingScore: 56,
+    isForceUser: true,
+  },
+  {
+    id: 82,
+    name: 'Sabine Wren',
+    pilotingScore: 73,
+    shootingScore: 99,
+    isForceUser: false,
+  },
+  {
+    id: 22,
+    name: 'Zeb Orellios',
+    pilotingScore: 20,
+    shootingScore: 59,
+    isForceUser: false,
+  },
+  {
+    id: 15,
+    name: 'Ezra Bridger',
+    pilotingScore: 43,
+    shootingScore: 67,
+    isForceUser: true,
+  },
+  {
+    id: 11,
+    name: 'Caleb Dume',
+    pilotingScore: 71,
+    shootingScore: 85,
+    isForceUser: true,
+  },
+]
+
+let jediPersonnel = personnel.filter((person) => person.isForceUser)
+
+let jediScores = jediPersonnel.map(
+  (jedi) => jedi.pilotingScore + jedi.shootingScore,
+)
+
+let totalJediScore = jediScores.reduce((acc, score) => acc + score, 0)
+
+const totalJediScoreChained = personnel
+  .filter((person) => person.isForceUser)
+  .map((jedi) => jedi.pilotingScore + jedi.shootingScore)
+  .reduce((acc, score) => acc + score, 0)
+
+const totalJediScoreReduced = personnel.reduce(
+  (acc, person) =>
+    person.isForceUser
+      ? acc + person.pilotingScore + person.shootingScore
+      : acc,
+  0,
+)
