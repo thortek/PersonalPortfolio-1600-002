@@ -43,6 +43,11 @@
   .card__face--front {
     background: red;
   }
+
+  .card__face--front img {
+    height: 100%;
+    width: 100%;
+  }
   
   .card__face--back {
     background: blue;
