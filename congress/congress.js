@@ -6,10 +6,17 @@ const congressGrid = document.querySelector('.congressGrid')
 const seniorityButton = document.querySelector('#seniorityButton')
 const birthdayButton = document.querySelector('#birthdayButton')
 const republicansButton = document.querySelector('#republicans')
+const missedVotes = document.querySelector('#missedVotes')
 
 republicansButton.addEventListener('click', () => {
     populateCongressDiv(filterCongressPeople(representatives, 'R'))
 })
+
+missedVotes.addEventListener('click', () => {
+    console.log(missedVotesMember(senators))
+    //alert(missedVotesMember(senators))
+}
+)
 
 seniorityButton.addEventListener('click', () => senioritySort())
 
@@ -44,7 +51,8 @@ function getSimplifiedPeople(peopleList) {
             name: `${person.first_name}${middleName} ${person.last_name}`,
             imgURL: `https://www.govtrack.us/static/legislator-photos/${person.govtrack_id}-100px.jpeg`,
             seniority: parseInt(person.seniority, 10),
-            party: person.party
+            party: person.party,
+            missed_votes_pct: person.missed_votes_pct
         }
     })
 }
@@ -55,6 +63,11 @@ function senioritySort() {
 
 const filterCongressPeople = (chamber, politicalParty) => {
     return getSimplifiedPeople(chamber).filter(member => member.party === politicalParty)
+}
+
+const missedVotesMember = (chamber) => {
+    const highestMissedVotesPerson = getSimplifiedPeople(chamber).reduce((acc, member) => acc.missed_votes_pct > member.missed_votes_pct ? acc : member)
+    return getSimplifiedPeople(chamber).filter((person) => person.missed_votes_pct === highestMissedVotesPerson.missed_votes_pct)
 }
 
 populateCongressDiv(getSimplifiedPeople(senators))
