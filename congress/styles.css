@@ -20,5 +20,18 @@ figure {
 }
 
 figcaption {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fa-republican {
+    color: red;
+}
+
+.fa-democrat {
+    color: blue;
+}
+
+.fa-mitten {
+    color: green;
 }
