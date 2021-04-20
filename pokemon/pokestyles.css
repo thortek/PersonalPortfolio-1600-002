@@ -41,16 +41,37 @@
   }
 
   .card__face--front {
-    background: red;
+    /* background: red; */
     padding-top: 8px;
   }
 
   .card__face--front img {
     height: 190px;
     width: 190px;
+    /* filter: drop-shadow(10px 5px 4px #4444dd); */
   }
   
   .card__face--back {
-    background: blue;
+    background: rgb(195, 195, 236);
     transform: rotateY(180deg);
   }
+
+/*   .grass {
+    background: green;
+  }
+
+  .fire {
+    background-color: red;
+  }
+
+  .water {
+    box-shadow: 10px 5px 5px blue;
+  }
+
+  .bug {
+    border: 2px solid chartreuse;
+  }
+
+  .normal {
+    background: linear-gradient(#e66465, #9198e5);
+  } */
