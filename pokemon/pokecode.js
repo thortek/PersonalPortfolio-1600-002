@@ -1,10 +1,17 @@
+import { removeChildren } from '../utils/index.js'
+
 const pokeGrid = document.querySelector('.pokeGrid')
 const loadButton = document.querySelector('.loadPokemon')
 const fetchButton = document.querySelector('.fetchPokemonByID')
 const newButton = document.querySelector('.newPokemon')
 
+let offset = 800
+let limit = 25
+
 loadButton.addEventListener('click', () => {
-  loadPage()
+  loadPage(offset, limit)
+  offset = offset + limit
+  loadButton.textContent = `Load ${limit} more Pokemon`
 })
 
 fetchButton.addEventListener('click', () => {
@@ -15,7 +22,7 @@ fetchButton.addEventListener('click', () => {
 })
 
 class Pokemon {
-  constructor(name, height, weight, abilities, moves, types) {
+  constructor(name, height, weight, abilities, moves, types, stats) {
     this.id = 900
     this.name = name
     this.height = height
@@ -23,10 +30,12 @@ class Pokemon {
     this.abilities = abilities
     this.moves = moves
     this.types = types
+    this.stats = stats
   }
 }
 
 newButton.addEventListener('click', () => {
+  removeChildren(pokeGrid)
   let pokeName = prompt('What is the name of your new Pokemon?')
   //let pokeHeight = prompt('Pokemon height?')
   //let pokeWeight = prompt('Pokemon weight?')
@@ -47,6 +56,12 @@ newButton.addEventListener('click', () => {
         },
       },
     ],
+    [{
+      base_stat: 100,
+      stat: {
+        name: "hp"
+      }
+    }]
   )
   populatePokeCard(newPokemon)
 })
@@ -74,16 +89,17 @@ async function getAPIData(url) {
   }
 }
 
-function loadPage() {
-  getAPIData(`https://pokeapi.co/api/v2/pokemon?limit=25`).then(
-    async (data) => {
-      for (const singlePokemon of data.results) {
-        await getAPIData(singlePokemon.url).then((pokeData) =>
-          populatePokeCard(pokeData),
-        )
-      }
-    },
-  )
+function loadPage(offset, limit) {
+  removeChildren(pokeGrid)
+  getAPIData(
+    `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
+  ).then(async (data) => {
+    for (const singlePokemon of data.results) {
+      await getAPIData(singlePokemon.url).then((pokeData) =>
+        populatePokeCard(pokeData),
+      )
+    }
+  })
 }
 
 function populatePokeCard(singlePokemon) {
@@ -111,10 +127,20 @@ function populateCardFront(pokemon) {
   frontLabel.textContent = pokemon.name
   let frontImage = document.createElement('img')
   frontImage.src = getImageFileName(pokemon)
+  frontImage.addEventListener(
+    'error',
+    () => (frontImage.src = 'images/pokeball.png'),
+  )
   pokeFront.appendChild(frontImage)
   pokeFront.appendChild(frontLabel)
 
-typesBackground(pokemon, pokeFront)
+  let pokeStats = document.createElement('p')
+  pokeStats.textContent = `Height: ${pokemon.height / 10} m Weight: ${
+    pokemon.weight / 10
+  } kg`
+  pokeFront.appendChild(pokeStats)
+
+  typesBackground(pokemon, pokeFront)
 
   return pokeFront
 }
@@ -158,6 +184,12 @@ function populateCardBack(pokemon) {
     let abilityType = document.createElement('p')
     abilityType.textContent = pokeAbility.ability.name
     pokeBack.appendChild(abilityType)
+  })
+
+  pokemon.stats.forEach((stat) => {
+    let statPara = document.createElement('p')
+    statPara.textContent = `${stat.stat.name} : ${stat.base_stat}`
+    pokeBack.appendChild(statPara)
   })
 
   return pokeBack
