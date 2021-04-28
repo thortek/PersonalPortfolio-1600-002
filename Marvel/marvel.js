@@ -1,16 +1,11 @@
 const main = document.querySelector('main')
 
 
-fetch("https://aerisweather1.p.rapidapi.com/alerts/jordan,mt", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-key": "",
-		"x-rapidapi-host": "aerisweather1.p.rapidapi.com"
-	}
-})
+fetch(`https://gateway.marvel.com:443/v1/public/characters?apikey=${process.env.MARVEL_APIKEY}`)
 .then(response => {
-	console.log(response);
+	console.log(response)
 })
 .catch(err => {
-	console.error(err);
-});
+	console.error(err)
+})
+
